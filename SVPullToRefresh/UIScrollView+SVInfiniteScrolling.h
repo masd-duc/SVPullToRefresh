@@ -11,9 +11,17 @@
 
 @class SVInfiniteScrollingView;
 
+enum {
+    SVInfiniteScrollingPositionBottom = 0,
+    SVInfiniteScrollingPositionTop = 1
+};
+
+typedef NSUInteger SVInfiniteScrollingPosition;
+
 @interface UIScrollView (SVInfiniteScrolling)
 
 - (void)addInfiniteScrollingWithActionHandler:(void (^)(void))actionHandler;
+- (void)addInfiniteScrollingWithActionHandler:(void (^)(void))actionHandler position:(SVInfiniteScrollingPosition)position;
 - (void)triggerInfiniteScrolling;
 
 @property (nonatomic, strong, readonly) SVInfiniteScrollingView *infiniteScrollingView;
@@ -35,6 +43,7 @@ typedef NSUInteger SVInfiniteScrollingState;
 
 @property (nonatomic, readwrite) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
 @property (nonatomic, readonly) SVInfiniteScrollingState state;
+@property (nonatomic, readonly) SVInfiniteScrollingPosition position;
 @property (nonatomic, readwrite) BOOL enabled;
 
 - (void)setCustomView:(UIView *)view forState:(SVInfiniteScrollingState)state;
